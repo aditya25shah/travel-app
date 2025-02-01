@@ -16,18 +16,18 @@
         <h1 class="logo-text">&nbsp;Ghumo<span class="dot-com">.com</span></h1>
       </div>
       <ul class="nav-links">
-        <li><a href="flights.html">Flights</a></li>
-        <li><a href="trains.html">Trains</a></li>
-        <li><a href="cars.html">Cars</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="login.html">Login/Signup</a></li>
-      </ul>
+        <li><a href="flights.html" id="flights-link">Flights</a></li>
+        <li><a href="cars.html" id="cars-link">Cars</a></li>
+        <li><a href="hotels.html" id="hotels-link">Hotels</a></li>
+        <li><a href="#" id="about-link">About</a></li>
+        <li><a href="login.html" id="login-toggle">Login/Signup</a></li>
+    </ul>
     </nav>
   </header>
   <section class="hero" style="background-image: url('https://th.bing.com/th/id/R.b794aee72b944d355e06aceeadc70061?rik=hL7tJEouCEwulQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f89%2f5%2fkz30aA.jpg&ehk=%2fYFovbMKgjxDVE0lyzGmgSOQdDOV8QPwOSU0oi2FiYw%3d&risl=&pid=ImgRaw&r=0')">
     <div class="hero-content">
       <h1 class="front-pic">Your Journey Begins Here</h1>
-      <p>Book Flights, Trains, Cars, and Ships in one place</p>
+      <p>Book Flights, Trains, Cars, and Hotels in one place</p>
     </div>
   </section>
   <section class="card-grid">
@@ -120,7 +120,10 @@
         </div>
       </div>
   </section>
+  
   <footer>
+    <section id="about-section">
+    </section>
     <div class="footer-content">
       <div class="footer-section">
         <h3>Quick Links</h3>
@@ -128,25 +131,41 @@
           <li><a href="flights.html">Flights</a></li>
           <li><a href="trains.html">Trains</a></li>
           <li><a href="cars.html">Cars</a></li>
-          <li><a href="ships.html">Ships</a></li>
+          <li><a href="hotels.html">Hotels</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Contact Us</h3>
         <p>Aditya Shah</p>
         <p>Email: aditya546shah@gmail.com</p>
-        <p>Phone: +91 9942673363</p> 
+        <p>Phone: +91 1234567809</p> 
       </div>
       <div class="footer-section">
         <h3>Follow Us</h3>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="acebook" aria-label="Visit our Facebook page">
+            <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://x.com/AdityaShah28037?t=2nJsjvBuqRK7vutx7a3JQQ&s=08" class="titter" aria-label="Visit our Twitter profile">
+            <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/_aditya_pixels_?igsh=emp6Zm0zODZ5eGdu" class="istagram" aria-label="Visit our Instagram profile">
+            <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/aditya-shah-8bb76532a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="inkedin" aria-label="Visit our LinkedIn page">
+            <i class="fab fa-linkedin"></i>
+            </a>
         </div>
       </div>
     </div>
   </footer>
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+        <h2>Sign In Required</h2>
+        <p>Please sign in to access this feature.</p>
+        <button id="close-modal">Close</button>
+    </div>
+</div>
+  <script src="script.js"></script>
 </body>
 </html>
