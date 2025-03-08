@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//  Store booking data in session storage (Booking Form)
+// ✅ Store booking data in session storage (Booking Form)
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('booking-form');
     if (form) {
@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log("Saving confirmation data:", confirmationData);
 
-            //  Save in sessionStorage
+            // ✅ Save in sessionStorage
             sessionStorage.setItem('confirmationData', JSON.stringify(confirmationData));
 
-            // Redirect after ensuring data is stored
+            // ✅ Redirect after ensuring data is stored
             setTimeout(() => {
                 window.location.href = 'confirmation.html';
             }, 500);
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//  Redirect functions
+// ✅ Redirect functions
 function redirect() {
     window.location.href = "index1.html";
 }
