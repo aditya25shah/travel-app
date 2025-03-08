@@ -53,12 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
+            const username = document.querySelector('#login-form input[type="name"]').value;
+            const password = document.querySelector('#login-form input[type="password"]').value;
+
+            if (username === 'adityashah' && password === '1234') {
+                alert('Login successfull!');
+                window.location.href = "index1.html";
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+    }
+});
 function redirectToBooking() {
     window.location.href = "bookings.html";
 }
-// local session sstorage 
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('booking-form');
     if (form) {
@@ -103,20 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const username = document.querySelector('#login-form input[type="name"]').value;
-        const password = document.querySelector('#login-form input[type="password"]').value;
-        if (username === 'adityashah' && password === '1234') {
-            alert('Login successfull!');
-            window.location.href = "index1.html";
-        } else {
-            alert('Invalid credentials. Please try again.');
-        }
-    });
-}
-});
+
 function redirect() {
     window.location.href = "index1.html";
 }
