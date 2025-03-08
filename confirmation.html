@@ -66,6 +66,49 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script >
+        document.addEventListener('DOMContentLoaded', () => {
+    const confirmationDetails = document.getElementById('confirmation-details');
+
+    if (confirmationDetails) {
+        const storedData = sessionStorage.getItem('confirmationData');
+
+        if (storedData) {
+            const data = JSON.parse(storedData);
+            console.log("Loaded confirmation data:", data);
+
+            document.getElementById('booking-type').textContent = `Type: ${data.type}`;
+            document.getElementById('booking-name').textContent = `Item: ${data.name}`;
+            document.getElementById('booking-price').textContent = `Price: ₹${data.price}`;
+            document.getElementById('booking-duration').textContent = `Duration: ${data.duration} days`;
+            document.getElementById('user-name').textContent = `Booked by: ${data.fullName}`;
+            document.getElementById('user-email').textContent = `Email: ${data.email}`;
+            document.getElementById('user-phone').textContent = `Phone: ${data.phone}`;
+        } else {
+            console.warn("No booking data found in session storage.");
+            confirmationDetails.innerHTML = "<p>No booking data found.</p>";
+        }
+    }
+
+    //  Confetti effect on confirmation page
+    if (document.getElementById('confirmation-details')) {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    }
+});
+
+//  Redirect functions for buttons
+function redirect() {
+    window.location.href = "index1.html";
+}
+
+function redirecttrue() {
+    window.location.href = "payment.html";
+}
+
+    </script>
 </body>
 </html>
