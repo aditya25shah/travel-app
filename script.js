@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const restrictedLinks = ['flights-link','trains-link', 'cars-link', 'hotels-link', 'about-link'];
+    const restrictedLinks = ['flights-link', 'trains-link', 'cars-link', 'hotels-link', 'about-link'];
     const modal = document.getElementById('login-modal');
     const closeModal = document.getElementById('close-modal');
 
@@ -73,10 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Function to redirect to bookings page
 function redirectToBooking() {
     window.location.href = "bookings.html";
 }
 
+// Store booking details in session storage
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('booking-form');
     if (form) {
@@ -104,16 +106,22 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             console.log("Saving confirmation data:", confirmationData);
+
+            // Store the data in session storage before redirecting
             sessionStorage.setItem('confirmationData', JSON.stringify(confirmationData));
 
-            window.location.href = 'confirmation.html';
+            // Redirect to confirmation page after ensuring data is stored
+            setTimeout(() => {
+                window.location.href = 'confirmation.html';
+            }, 500);
         });
     }
 
     if (document.getElementById('confirmation-details')) {
-        const confirmationData = sessionStorage.getItem('confirmationData');
-        if (confirmationData) {
-            const data = JSON.parse(confirmationData);
+        const storedData = sessionStorage.getItem('confirmationData');
+
+        if (storedData) {
+            const data = JSON.parse(storedData);
             console.log("Loaded confirmation data:", data);
 
             document.getElementById('booking-type').textContent = `Type: ${data.type}`;
@@ -130,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Redirect function for different pages
 function redirect() {
     window.location.href = "index1.html";
 }
@@ -138,6 +147,7 @@ function redirecttrue() {
     window.location.href = "payment.html";
 }
 
+// Confetti effect on confirmation page
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('confirmation-details')) {
         confetti({
