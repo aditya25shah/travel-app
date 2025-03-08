@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // **Login Form Hardcoded Credentials**
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -60,8 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const username = document.querySelector('#login-form input[type="name"]').value;
             const password = document.querySelector('#login-form input[type="password"]').value;
 
-            if (username === 'adityashah' && password === '1234') {
-                alert('Login successfull!');
+            if (username === 'adityashah@gmail.com' && password === '1234') {
+                alert('Login successful!');
+                sessionStorage.setItem("isLoggedIn", "true"); // Store login state
                 window.location.href = "index1.html";
             } else {
                 alert('Invalid credentials. Please try again.');
@@ -69,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 function redirectToBooking() {
     window.location.href = "bookings.html";
 }
@@ -79,12 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const userDetails = {
-                fullName: document.getElementById('full-name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                duration: document.getElementById('duration') ? document.getElementById('duration').value : '1'
-            };
+            const fullName = document.getElementById('full-name')?.value || 'Not provided';
+            const email = document.getElementById('email')?.value || 'Not provided';
+            const phone = document.getElementById('phone')?.value || 'Not provided';
+            const duration = document.getElementById('duration')?.value || '1';
 
             const urlParams = new URLSearchParams(window.location.search);
             const bookingDetails = {
@@ -93,8 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 price: urlParams.get('price') || '0'
             };
 
-            const confirmationData = { ...bookingDetails, ...userDetails };
+            const confirmationData = {
+                ...bookingDetails,
+                fullName,
+                email,
+                phone,
+                duration
+            };
 
+            console.log("Saving confirmation data:", confirmationData);
             sessionStorage.setItem('confirmationData', JSON.stringify(confirmationData));
 
             window.location.href = 'confirmation.html';
@@ -102,17 +111,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (document.getElementById('confirmation-details')) {
-        const confirmationData = JSON.parse(sessionStorage.getItem('confirmationData'));
-
+        const confirmationData = sessionStorage.getItem('confirmationData');
         if (confirmationData) {
-            document.getElementById('booking-type').textContent = `Type: ${confirmationData.type}`;
-            document.getElementById('booking-name').textContent = `Item: ${confirmationData.name}`;
-            document.getElementById('booking-price').textContent = `Price: ₹${confirmationData.price}`;
-            document.getElementById('booking-duration').textContent = `Duration: ${confirmationData.duration} days`;
-            document.getElementById('user-name').textContent = `Booked by: ${confirmationData.fullName}`;
-            document.getElementById('user-email').textContent = `Email: ${confirmationData.email}`;
-            document.getElementById('user-phone').textContent = `Phone: ${confirmationData.phone}`;
+            const data = JSON.parse(confirmationData);
+            console.log("Loaded confirmation data:", data);
+
+            document.getElementById('booking-type').textContent = `Type: ${data.type}`;
+            document.getElementById('booking-name').textContent = `Item: ${data.name}`;
+            document.getElementById('booking-price').textContent = `Price: ₹${data.price}`;
+            document.getElementById('booking-duration').textContent = `Duration: ${data.duration} days`;
+            document.getElementById('user-name').textContent = `Booked by: ${data.fullName}`;
+            document.getElementById('user-email').textContent = `Email: ${data.email}`;
+            document.getElementById('user-phone').textContent = `Phone: ${data.phone}`;
         } else {
+            console.warn("No booking data found in session storage.");
             document.getElementById('confirmation-details').innerHTML = "<p>No booking data found.</p>";
         }
     }
@@ -127,9 +139,11 @@ function redirecttrue() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-    });
+    if (document.getElementById('confirmation-details')) {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    }
 });
