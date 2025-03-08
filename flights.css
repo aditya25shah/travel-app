@@ -173,45 +173,7 @@ nav {
     background-color: #0056b3;
 }
 
-/* Card Grid */
-.card-grid {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 300px;
-    text-align: center;
-}
-
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.card-content {
-    padding: 20px;
-}
-
-.card-content h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.card-content p {
-    font-size: 16px;
-    color: #555;
-}
-
-/* Footer */
+/* Footer ka*/
 footer {
     background-color: #333;
     color: #fff;
@@ -316,5 +278,20 @@ footer {
   .social-icons a:hover.inkedin {
     color: #0d4f92;
     text-shadow: 0 0 10px rgba(10, 102, 194, 0.5)
+  }
+  .book-btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #003580;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .book-btn:hover {
+    background-color:#0071c2;
   }
   
