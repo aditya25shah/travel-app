@@ -1,60 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Scroll behavior for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
-    const loginToggle = document.getElementById('login-toggle');
-    const signupToggle = document.getElementById('signup-toggle');
+    // Login handling
     const loginForm = document.getElementById('login-form');
-    const signupForm = document.getElementById('signup-form');
-
-    if (loginToggle && signupToggle) {
-        [loginToggle, signupToggle].forEach(btn => {
-            btn.addEventListener('click', () => {
-                loginForm.classList.toggle('active');
-                signupForm.classList.toggle('active');
-                loginToggle.classList.toggle('active');
-                signupToggle.classList.toggle('active');
-            });
-        });
-    }
-
-    const restrictedLinks = ['flights-link', 'trains-link', 'cars-link', 'hotels-link', 'about-link'];
-    const modal = document.getElementById('login-modal');
-    const closeModal = document.getElementById('close-modal');
-
-    if (modal && closeModal) {
-        restrictedLinks.forEach(id => {
-            const link = document.getElementById(id);
-            if (link) {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modal.style.display = 'flex';
-                });
-            }
-        });
-
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    }
-
-    // **Login Form Hardcoded Credentials**
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -73,22 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Function to redirect to bookings page
-function redirectToBooking() {
-    window.location.href = "bookings.html";
-}
-
-// Store booking details in session storage
+// ✅ Store booking data in session storage
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('booking-form');
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const fullName = document.getElementById('full-name')?.value || 'Not provided';
-            const email = document.getElementById('email')?.value || 'Not provided';
-            const phone = document.getElementById('phone')?.value || 'Not provided';
-            const duration = document.getElementById('duration')?.value || '1';
+            const fullName = document.getElementById('full-name')?.value.trim() || 'Not provided';
+            const email = document.getElementById('email')?.value.trim() || 'Not provided';
+            const phone = document.getElementById('phone')?.value.trim() || 'Not provided';
+            const duration = document.getElementById('duration')?.value.trim() || '1';
 
             const urlParams = new URLSearchParams(window.location.search);
             const bookingDetails = {
@@ -97,26 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 price: urlParams.get('price') || '0'
             };
 
-            const confirmationData = {
-                ...bookingDetails,
-                fullName,
-                email,
-                phone,
-                duration
-            };
+            const confirmationData = { ...bookingDetails, fullName, email, phone, duration };
 
             console.log("Saving confirmation data:", confirmationData);
 
-            // Store the data in session storage before redirecting
+            // ✅ Save in sessionStorage
             sessionStorage.setItem('confirmationData', JSON.stringify(confirmationData));
 
-            // Redirect to confirmation page after ensuring data is stored
+            // ✅ Redirect after ensuring data is stored
             setTimeout(() => {
                 window.location.href = 'confirmation.html';
             }, 500);
         });
     }
 
+    // ✅ Load booking details on confirmation page
     if (document.getElementById('confirmation-details')) {
         const storedData = sessionStorage.getItem('confirmationData');
 
@@ -138,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Redirect function for different pages
+// ✅ Redirect functions
 function redirect() {
     window.location.href = "index1.html";
 }
@@ -147,7 +94,7 @@ function redirecttrue() {
     window.location.href = "payment.html";
 }
 
-// Confetti effect on confirmation page
+// ✅ Confetti effect on confirmation page
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('confirmation-details')) {
         confetti({
