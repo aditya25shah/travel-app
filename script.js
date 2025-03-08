@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll behavior for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ✅ Store booking data in session storage
+//  Store booking data in session storage (Booking Form)
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('booking-form');
     if (form) {
@@ -53,39 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log("Saving confirmation data:", confirmationData);
 
-            // ✅ Save in sessionStorage
+            //  Save in sessionStorage
             sessionStorage.setItem('confirmationData', JSON.stringify(confirmationData));
 
-            // ✅ Redirect after ensuring data is stored
+            // Redirect after ensuring data is stored
             setTimeout(() => {
                 window.location.href = 'confirmation.html';
             }, 500);
         });
     }
-
-    // ✅ Load booking details on confirmation page
-    if (document.getElementById('confirmation-details')) {
-        const storedData = sessionStorage.getItem('confirmationData');
-
-        if (storedData) {
-            const data = JSON.parse(storedData);
-            console.log("Loaded confirmation data:", data);
-
-            document.getElementById('booking-type').textContent = `Type: ${data.type}`;
-            document.getElementById('booking-name').textContent = `Item: ${data.name}`;
-            document.getElementById('booking-price').textContent = `Price: ₹${data.price}`;
-            document.getElementById('booking-duration').textContent = `Duration: ${data.duration} days`;
-            document.getElementById('user-name').textContent = `Booked by: ${data.fullName}`;
-            document.getElementById('user-email').textContent = `Email: ${data.email}`;
-            document.getElementById('user-phone').textContent = `Phone: ${data.phone}`;
-        } else {
-            console.warn("No booking data found in session storage.");
-            document.getElementById('confirmation-details').innerHTML = "<p>No booking data found.</p>";
-        }
-    }
 });
 
-// ✅ Redirect functions
+//  Redirect functions
 function redirect() {
     window.location.href = "index1.html";
 }
@@ -93,14 +71,3 @@ function redirect() {
 function redirecttrue() {
     window.location.href = "payment.html";
 }
-
-// ✅ Confetti effect on confirmation page
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('confirmation-details')) {
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
-    }
-});
