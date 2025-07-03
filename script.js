@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { //added an event listener on Dom loaded content
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+            e.preventDefault();//prevent reloading
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const loginToggle = document.getElementById('login-toggle');
+    const loginToggle = document.getElementById('login-toggle'); //gets the id of neccessary things needed 
     const signupToggle = document.getElementById('signup-toggle');
     const loginForm = document.getElementById('login-form');
     const signupForm = document.getElementById('signup-form');
@@ -57,12 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const username = document.querySelector('#login-form input[type="name"]').value;
-            const password = document.querySelector('#login-form input[type="password"]').value;
+            const username = document.querySelector('#login-form input[type="name"]').value;//gets the username enetered by the user
+            const password = document.querySelector('#login-form input[type="password"]').value;//gets the password 
 
-            if (username === 'adityashah@gmail.com' && password === '1234') {
+            if (username === 'adityashah@gmail.com' && password === '1234') {//harcoded details (checks whether it matches or not!!)
                 alert('Login successful!');
-                sessionStorage.setItem("isLoggedIn", "true"); // Store login state
+                sessionStorage.setItem("isLoggedIn", "true"); // Store login state 
                 window.location.href = "index1.html";
             } else {
                 alert('Invalid credentials. Please try again.');
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Display data
             document.getElementById('booking-type').textContent = `Type: ${data.type}`;
             document.getElementById('booking-name').textContent = `Item: ${data.name}`;
-            document.getElementById('booking-price').textContent = `Price: ₹${data.price}`;
+            document.getElementById('booking-price').textContent = `Price: â¹${data.price}`;
             document.getElementById('user-name').textContent = `Booked by: ${data.fullName}`;
             document.getElementById('user-email').textContent = `Email: ${data.email}`;
             document.getElementById('user-phone').textContent = `Phone: ${data.phone}`;
